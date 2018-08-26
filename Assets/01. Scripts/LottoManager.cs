@@ -20,7 +20,9 @@ public class LottoManager : MonoBehaviour {
 
     public Button btnStart; // 시작 버튼
     public Button btnExcept; // 제외수 버튼
+    public Button btnBigdata;
     public GameObject pnExcept; // 제외 수 활성화 패널
+    public GameObject pnBigdata; // 빅 데이터 패널
 
     public int UINumberCount;
 
@@ -102,6 +104,17 @@ public class LottoManager : MonoBehaviour {
     public void PopupCloseExcept()
     {
         pnExcept.SetActive(false);
+    }
+    /*
+     * 빅데이터 버튼 처리
+     */
+    public void PopupOpenBigdata()
+    {
+
+    }
+    public void PopupCloseBigdata()
+    {
+
     }
 
     // 초기화 처리
