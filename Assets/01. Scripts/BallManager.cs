@@ -69,6 +69,24 @@ public class BallManager : MonoBehaviour {
             }
         }
     }
+    // 랜덤 제외
+    public void RndBalls()
+    {
+        int rnd = 0;
+        int i = 0;
+        rnd = Random.Range(5, 10);
+
+        //랜덤 갯수만큼 번호 제외
+        for (i = 0; i <= rnd; i++)
+        {
+            int rnd2 = Random.Range(1, 45);
+            GameObject child = GameObject.Find("ExButtons").transform.Find("Button" + rnd2).gameObject;
+            BallButton ballbtn = child.GetComponent<BallButton>();
+            ballbtn.state = true;
+            ballbtn.BtnClick();
+        }
+
+    }
 
     public void AddBall(int num)
     {
@@ -84,7 +102,6 @@ public class BallManager : MonoBehaviour {
     }
     public void DestroyBall(int num)
     {
-        Debug.Log("공 삭제");
         GameObject ball = balls.Find("ball"+num+"(Clone)").gameObject;
         Destroy(ball);
     }

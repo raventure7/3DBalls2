@@ -29,4 +29,17 @@ public class ExceptManager : MonoBehaviour {
         BallManager.Instance.DeleteBalls();
         BallManager.Instance.CreateBall();
     }
+
+    // 랜덤 뽑기
+    public void RndBalls()
+    {
+        Debug.Log("랜덤 제외수");
+        ExceptInit();
+        StartCoroutine("RndBallsDelay");
+    }
+    IEnumerator RndBallsDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+        BallManager.Instance.RndBalls();
+    }
 }

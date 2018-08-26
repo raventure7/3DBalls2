@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{B3C215AB-EEAB-B022-C969-DC2A91A6DD0F}</ProjectGuid>
+    <ProjectGuid>{29746DA0-7C5E-580D-ACBB-E26A8145DBE3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -78,16 +78,16 @@
     <None Include="Assets\PSD Logo Templates\Fonts\Changa_One\OFL.txt" />
     <None Include="Assets\PSD Logo Templates\Fonts\Lilita_One\OFL.txt" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/JACK/Documents/GitHub/study/3D Balls/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/JACK/Documents/GitHub/3DBalls2/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/JACK/Documents/GitHub/study/3D Balls/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/JACK/Documents/GitHub/3DBalls2/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/JACK/Documents/GitHub/study/3D Balls/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/JACK/Documents/GitHub/3DBalls2/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/JACK/Documents/GitHub/study/3D Balls/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/JACK/Documents/GitHub/3DBalls2/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>F:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

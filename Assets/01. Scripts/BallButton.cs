@@ -20,7 +20,7 @@ public class BallButton : MonoBehaviour {
 		
 	}
     
-    void BtnClick()
+    public void BtnClick()
     {
         if(state == true)
         {

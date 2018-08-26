@@ -9,8 +9,7 @@ public class LottoManager : MonoBehaviour {
     enum STATE
     {
         READY,
-        START,
-        RESTART
+        START
     };
 
     STATE state = STATE.READY;
@@ -43,23 +42,35 @@ public class LottoManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Hole.Instance.count == 0 || UINumberCount == 6)
+
+        if (Hole.Instance.count == 0 || UINumberCount == 6)
         {
             btnStart.GetComponent<Button>().interactable = true;
             btnStart.GetComponentInChildren<Text>().text = "추첨시작";
 
             btnExcept.GetComponent<Button>().interactable = true;
             btnExcept.GetComponentInChildren<Text>().text = "제외수";
+            if(UINumberCount == 6)
+            {
+                state = STATE.READY;
+            }
         }
         else
         {
-            btnStart.GetComponent<Button>().interactable = false;
-            btnStart.GetComponentInChildren<Text>().text = "추첨중";
+            if(state == STATE.START)
+            {
+                btnStart.GetComponent<Button>().interactable = false;
+                btnStart.GetComponentInChildren<Text>().text = "추첨중";
 
-            btnExcept.GetComponent<Button>().interactable = false;
-            btnExcept.GetComponentInChildren<Text>().text = "불가";
+                btnExcept.GetComponent<Button>().interactable = false;
+                btnExcept.GetComponentInChildren<Text>().text = "불가";
+            }
+            //Debug.Log(Hole.Instance.count + ":" + UINumberCount);
+
         }
-	}
+
+
+    }
 
     // 시작 버튼 처리
     public void LottoStart()
@@ -73,6 +84,7 @@ public class LottoManager : MonoBehaviour {
         }
         LottoInit();
         Hole.Instance.start = true;
+        state = STATE.START;
     }
     /*
      * 제외수 버튼 처리
@@ -95,10 +107,9 @@ public class LottoManager : MonoBehaviour {
     // 초기화 처리
     void LottoInit()
     {
-        UINumberCount = 0;
+
         Hole.Instance.count = 0;
         Goal.Instance.count = 0;
-
         DeleteTopPanelBall();
 
     }
@@ -112,7 +123,7 @@ public class LottoManager : MonoBehaviour {
     }
     public void DeleteTopPanelBall()
     {
-
+        UINumberCount = 0;
         int i = 0;
         for (i = 0; i < lottoArray.Length; i++)
         {

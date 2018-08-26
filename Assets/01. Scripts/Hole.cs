@@ -41,7 +41,7 @@ public class Hole : MonoBehaviour {
         {
             if (hook == false && count <= 5)
             {
-                Debug.Log(other.gameObject.name);
+                //Debug.Log(other.gameObject.name);
                 LottoManager.Instance.lottoArray[count] = other.gameObject.GetComponent<Ball>().number; //배열에 추첨 번호 넣기.
                 //LottoManager.Instance.lottoCount++;
                 //other.gameObject.GetComponent<SphereCollider>().enabled = false;
