@@ -48,11 +48,15 @@ public class LottoManager : MonoBehaviour {
         if (Hole.Instance.count == 0 || UINumberCount == 6)
         {
             btnStart.GetComponent<Button>().interactable = true;
-            btnStart.GetComponentInChildren<Text>().text = "추첨시작";
+            //btnStart.GetComponentInChildren<Text>().text = "추첨시작";
+            btnStart.transform.Find("TextState").GetComponent<Text>().text = "시작";
+            btnStart.transform.Find("TextState").GetComponent<Text>().color = new Color32(69, 79, 255, 255);
 
             btnExcept.GetComponent<Button>().interactable = true;
-            btnExcept.GetComponentInChildren<Text>().text = "제외수";
-            if(UINumberCount == 6)
+            btnExcept.transform.Find("TextState").GetComponent<Text>().text = "사용가능";
+            btnExcept.transform.Find("TextState").GetComponent<Text>().color = new Color32(69, 79, 255, 255);
+
+            if (UINumberCount == 6)
             {
                 state = STATE.READY;
             }
@@ -62,10 +66,14 @@ public class LottoManager : MonoBehaviour {
             if(state == STATE.START)
             {
                 btnStart.GetComponent<Button>().interactable = false;
-                btnStart.GetComponentInChildren<Text>().text = "추첨중";
+                //btnStart.GetComponentInChildren<Text>().text = "추첨중";
+                btnStart.transform.Find("TextState").GetComponent<Text>().text = "추첨중";
+                btnStart.transform.Find("TextState").GetComponent<Text>().color = new Color32(173, 173, 173, 255);
 
                 btnExcept.GetComponent<Button>().interactable = false;
-                btnExcept.GetComponentInChildren<Text>().text = "불가";
+                btnExcept.transform.Find("TextState").GetComponent<Text>().text = "추첨중불가";
+                btnExcept.transform.Find("TextState").GetComponent<Text>().color = new Color32(173, 173, 173, 255);
+
             }
             //Debug.Log(Hole.Instance.count + ":" + UINumberCount);
 
@@ -110,11 +118,11 @@ public class LottoManager : MonoBehaviour {
      */
     public void PopupOpenBigdata()
     {
-
+        pnBigdata.SetActive(true);
     }
     public void PopupCloseBigdata()
     {
-
+        pnBigdata.SetActive(false);
     }
 
     // 초기화 처리

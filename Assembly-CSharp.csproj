@@ -64,6 +64,7 @@
     <Compile Include="Assets\01. Scripts\Ball.cs" />
     <Compile Include="Assets\01. Scripts\BallButton.cs" />
     <Compile Include="Assets\01. Scripts\BallManager.cs" />
+    <Compile Include="Assets\01. Scripts\BigdataManager.cs" />
     <Compile Include="Assets\01. Scripts\Bottom.cs" />
     <Compile Include="Assets\01. Scripts\DB\ConnectManager.cs" />
     <Compile Include="Assets\01. Scripts\DB\DBManagerScript.cs" />
