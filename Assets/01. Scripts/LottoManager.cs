@@ -119,6 +119,7 @@ public class LottoManager : MonoBehaviour {
     public void PopupOpenBigdata()
     {
         pnBigdata.SetActive(true);
+        BigdataManager.Instance.NumberCheck();
     }
     public void PopupCloseBigdata()
     {
