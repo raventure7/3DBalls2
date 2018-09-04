@@ -75,6 +75,7 @@
     <Compile Include="Assets\01. Scripts\Machine.cs" />
     <Compile Include="Assets\01. Scripts\Read\CSVReader.cs" />
     <Compile Include="Assets\01. Scripts\Read\LottoReaderScript.cs" />
+    <Compile Include="Assets\01. Scripts\SaveManager.cs" />
     <Compile Include="Assets\Simple UI\Samples\IconPreview.cs" />
     <None Include="Assets\PSD Logo Templates\Fonts\Baloo\OFL.txt" />
     <None Include="Assets\Simple UI\Fonts\OFL.txt" />
