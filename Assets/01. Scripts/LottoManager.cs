@@ -9,12 +9,13 @@ public class LottoManager : MonoBehaviour {
     enum STATE
     {
         NONE,
+        DEFAULT,
         READY,
         START,
         SAVE
     };
 
-    STATE state = STATE.NONE;
+    STATE state = STATE.DEFAULT;
 
     //public GameObject[] ball;
     public int[] lottoArray = new int[6];
@@ -63,47 +64,16 @@ public class LottoManager : MonoBehaviour {
 
         if (Hole.Instance.count == 0 || UINumberCount == 6)
         {
-            iconStart.SetActive(true);
-            iconExcept.SetActive(true);
-
-
-            btnStart.GetComponent<Button>().interactable = true;
-            //btnStart.GetComponentInChildren<Text>().text = "추첨시작";
-            btnStart.transform.Find("TextState").GetComponent<Text>().text = "시작";
-            btnStart.transform.Find("TextState").GetComponent<Text>().color = new Color32(69, 79, 255, 255);
-
-            btnExcept.GetComponent<Button>().interactable = true;
-            //btnExcept.transform.Find("TextState").GetComponent<Text>().text = "사용가능";
-            btnExcept.transform.Find("TextState").GetComponent<Text>().color = new Color32(69, 79, 255, 255);
-
-            btnBigdata.GetComponent<Button>().interactable = true;
-            btnBigdata.transform.Find("TextState").GetComponent<Text>().color = new Color32(173, 173, 173, 255);
-
             if (UINumberCount == 6)
             {
+                UINumberCount = UINumberCount + 1;
                 state = STATE.READY;
-                iconBigdata.SetActive(true);
+                
             }
-        }
-        else
-        {
-            if(state == STATE.START)
+            if(UINumberCount == 0)
             {
-                iconStart.SetActive(false);
-                iconExcept.SetActive(false);
-
-                btnStart.GetComponent<Button>().interactable = false;
-                //btnStart.GetComponentInChildren<Text>().text = "추첨중";
-                btnStart.transform.Find("TextState").GetComponent<Text>().text = "추첨중";
-                btnStart.transform.Find("TextState").GetComponent<Text>().color = new Color32(173, 173, 173, 255);
-
-                btnExcept.GetComponent<Button>().interactable = false;
-                btnExcept.transform.Find("TextState").GetComponent<Text>().text = "추첨중불가";
-                btnExcept.transform.Find("TextState").GetComponent<Text>().color = new Color32(173, 173, 173, 255);
-
+                btnSave.gameObject.SetActive(false);
             }
-            //Debug.Log(Hole.Instance.count + ":" + UINumberCount);
-
         }
         ButtonDisplay();
 
@@ -111,18 +81,72 @@ public class LottoManager : MonoBehaviour {
     // 로또 상황별 버튼 처리
     public void ButtonDisplay()
     {
+        //Debug.Log(state);
         switch(state)
         {
             case STATE.NONE:
-                btnSave.gameObject.SetActive(false);
                 break;
+
+            case STATE.DEFAULT:
+                btnSave.gameObject.SetActive(false);
+
+                iconStart.SetActive(true);
+                iconExcept.SetActive(true);
+                iconBigdata.SetActive(false);
+
+                ButtonSetting(true, btnStart, "가능");
+                ButtonSetting(true, btnExcept, "가능");
+                ButtonSetting(false, btnBigdata, "추첨후가능");
+
+                state = STATE.NONE;
+                break;
+
             case STATE.START:
-                //Debug.Log("START");
+                iconStart.SetActive(false);
+                iconExcept.SetActive(false);
+                iconBigdata.SetActive(false);
+
+
+                ButtonSetting(false, btnStart, "추첨중");
+                ButtonSetting(false, btnExcept, "추첨중불가");
+                ButtonSetting(false, btnBigdata, "추첨후가능");
+
+
                 break;
             case STATE.READY:
                 btnSave.gameObject.SetActive(true);
+                
+                iconStart.SetActive(true);
+                iconExcept.SetActive(true);
+                iconBigdata.SetActive(true);
+
+                ButtonSetting(true, btnStart, "가능");
+                ButtonSetting(true, btnExcept, "가능");
+                ButtonSetting(true, btnBigdata, "가능");
+
+
+                state = STATE.NONE;
                 break;
 
+        }
+    }
+
+    void ButtonSetting(bool state, Button button, string text)
+    {
+        if(state == true)
+        {
+            button.GetComponent<Button>().interactable = true;
+            button.transform.Find("TextState").GetComponent<Text>().color = new Color32(69, 79, 255, 255);
+       
+        }
+        else
+        {
+            button.GetComponent<Button>().interactable = false;
+            button.transform.Find("TextState").GetComponent<Text>().color = new Color32(173, 173, 173, 255);
+        }
+        if(text != "")
+        {
+            button.transform.Find("TextState").GetComponent<Text>().text = text;
         }
     }
 
@@ -150,6 +174,7 @@ public class LottoManager : MonoBehaviour {
             Debug.Log("볼 다시 넣기");
             BallManager.Instance.ReturnBall();
             DeleteTopPanelBall();
+            state = STATE.DEFAULT;
         }
         pnExcept.SetActive(true);
     }
@@ -177,8 +202,8 @@ public class LottoManager : MonoBehaviour {
         Hole.Instance.count = 0;
         Goal.Instance.count = 0;
         DeleteTopPanelBall();
-
     }
+    
 
     // 탑 패널 U.I 표기 및 삭제
     public void AddTopPanelBall(int num)
@@ -202,5 +227,14 @@ public class LottoManager : MonoBehaviour {
                 Resources.Load<Sprite>("Prefabs/UI/UI_Fill_Sky") as Sprite;
         }
     }
+    // state 변경
+    public void SetState(int val)
+    {
+        if(val == 0)
+        {
+            state = STATE.DEFAULT;
+            Debug.Log(state);
+        }
 
+    }
 }

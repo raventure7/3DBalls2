@@ -2675,7 +2675,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 388311749}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1689340798}
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &388311749
@@ -11849,12 +11860,13 @@ MonoBehaviour:
   tmpLottoArray: 000000000000000000000000000000000000000000000000
   LottoSaveList: []
   puSave: {fileID: 529702969}
-  Img1: {fileID: 1129324572}
-  Img2: {fileID: 278364063}
-  Img3: {fileID: 1551769043}
-  Img4: {fileID: 1990342297}
-  Img5: {fileID: 660511048}
-  Img6: {fileID: 1703224351}
+  Img:
+  - {fileID: 1129324572}
+  - {fileID: 278364063}
+  - {fileID: 1551769043}
+  - {fileID: 1990342297}
+  - {fileID: 660511048}
+  - {fileID: 1703224351}
 --- !u!4 &1689340799
 Transform:
   m_ObjectHideFlags: 0

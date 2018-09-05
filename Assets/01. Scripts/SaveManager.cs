@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -23,12 +24,7 @@ public class SaveManager : MonoBehaviour {
     }
     public List<LottoSave> LottoSaveList = new List<LottoSave>();
     public GameObject puSave;
-    public GameObject Img1;
-    public GameObject Img2;
-    public GameObject Img3;
-    public GameObject Img4;
-    public GameObject Img5;
-    public GameObject Img6;
+    public GameObject[] Img = new GameObject[6];
 
 
     private void Awake()
@@ -57,6 +53,11 @@ public class SaveManager : MonoBehaviour {
         PlayerPrefs.SetString("SaveList", Convert.ToBase64String(memoryStream.GetBuffer()));
         Load();
         puSave.SetActive(true);
+        for(int i = 0; i < Img.Length; i++)
+        {
+            Img[i].GetComponent<Image>().sprite =
+                Resources.Load<Sprite>("Prefabs/2D/ball_" + tmpLottoArray[i]) as Sprite;
+        }
     }
     public void Load()
     {
@@ -98,7 +99,11 @@ public class SaveManager : MonoBehaviour {
             num6 = tmpLottoArray[5]
         });
     }
-
+    public void Close()
+    {
+        puSave.SetActive(false);
+        LottoManager.Instance.SetState(0); //상태 NONE
+    }
 	
 	// Update is called once per frame
 	void Update () {
