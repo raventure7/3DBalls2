@@ -26,6 +26,7 @@ public class SaveManager : MonoBehaviour {
     public GameObject puSave;
     public GameObject[] Img = new GameObject[6];
 
+    int lastHead;
 
     private void Awake()
     {
@@ -62,7 +63,6 @@ public class SaveManager : MonoBehaviour {
     public void Load()
     {
         var saveData = PlayerPrefs.GetString("SaveList");
-        Debug.Log(saveData);
         if(!string.IsNullOrEmpty(saveData))
         {
             var binaryFormatter = new BinaryFormatter();
@@ -77,9 +77,17 @@ public class SaveManager : MonoBehaviour {
             LottoSaveList = new List<LottoSave>();
         }
     }
+    
     public void AddData()
     {
-        int tmpHead = LottoSaveList.Count + 1;
+        
+        
+        foreach(var val in LottoSaveList)
+        {
+            lastHead = val.head;
+        }
+        int tmpHead = lastHead + 1;
+
         //정렬
         int k = 0;
         tmpLottoArray = LottoManager.Instance.lottoArray;
@@ -103,6 +111,39 @@ public class SaveManager : MonoBehaviour {
     {
         puSave.SetActive(false);
         LottoManager.Instance.SetState(0); //상태 NONE
+    }
+
+    public void DeleteData(int num)
+    {
+        Debug.Log(num);
+        for(int i = 0; i<=LottoSaveList.Count-1; i++)
+        {
+            if (LottoSaveList[i].head == num)
+                LottoSaveList.Remove(LottoSaveList[i]);
+        }
+        /*
+        foreach(var val in LottoSaveList)
+        {
+            if(val.head == num)
+            {
+                LottoSaveList.Remove(val);
+            }
+        }
+        */
+        var binaryFormatter = new BinaryFormatter();
+        var memoryStream = new MemoryStream();
+        binaryFormatter.Serialize(memoryStream, LottoSaveList);
+        PlayerPrefs.SetString("SaveList", Convert.ToBase64String(memoryStream.GetBuffer()));
+    }
+
+    public void Clear()
+    {
+        LottoSaveList.Clear();
+        var binaryFormatter = new BinaryFormatter();
+        var memoryStream = new MemoryStream();
+        // 바이트 배열로 저장
+        binaryFormatter.Serialize(memoryStream, LottoSaveList);
+        PlayerPrefs.SetString("SaveList", Convert.ToBase64String(memoryStream.GetBuffer()));
     }
 	
 	// Update is called once per frame

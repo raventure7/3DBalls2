@@ -25,14 +25,12 @@ public class LottoManager : MonoBehaviour {
     public Button btnExcept; // 제외수 버튼
     public Button btnBigdata;
     public Button btnSave;
+
     public GameObject pnExcept; // 제외 수 활성화 패널
     public GameObject pnBigdata; // 빅 데이터 패널
+    public GameObject pnSavelist;
 
 
-    public GameObject iconStart;
-    public GameObject iconExcept;
-    public GameObject iconBigdata;
-    public GameObject iconSaveList;
 
     public int UINumberCount;
 
@@ -49,10 +47,6 @@ public class LottoManager : MonoBehaviour {
 
         BallManager.Instance.CreateBall();
         LottoInit();
-        iconStart.SetActive(false);
-        iconExcept.SetActive(false);
-        iconBigdata.SetActive(false);
-        iconSaveList.SetActive(false);
 
         btnSave.gameObject.SetActive(false);
 
@@ -89,37 +83,25 @@ public class LottoManager : MonoBehaviour {
 
             case STATE.DEFAULT:
                 btnSave.gameObject.SetActive(false);
-
-                iconStart.SetActive(true);
-                iconExcept.SetActive(true);
-                iconBigdata.SetActive(false);
-
                 ButtonSetting(true, btnStart, "가능");
                 ButtonSetting(true, btnExcept, "가능");
-                ButtonSetting(false, btnBigdata, "추첨후가능");
+
+                if(UINumberCount>=6)
+                    ButtonSetting(true, btnBigdata, "가능");
+                else
+                    ButtonSetting(false, btnBigdata, "추첨후가능");
 
                 state = STATE.NONE;
                 break;
 
             case STATE.START:
-                iconStart.SetActive(false);
-                iconExcept.SetActive(false);
-                iconBigdata.SetActive(false);
-
-
                 ButtonSetting(false, btnStart, "추첨중");
                 ButtonSetting(false, btnExcept, "추첨중불가");
                 ButtonSetting(false, btnBigdata, "추첨후가능");
 
-
                 break;
             case STATE.READY:
                 btnSave.gameObject.SetActive(true);
-                
-                iconStart.SetActive(true);
-                iconExcept.SetActive(true);
-                iconBigdata.SetActive(true);
-
                 ButtonSetting(true, btnStart, "가능");
                 ButtonSetting(true, btnExcept, "가능");
                 ButtonSetting(true, btnBigdata, "가능");
@@ -193,6 +175,18 @@ public class LottoManager : MonoBehaviour {
     public void PopupCloseBigdata()
     {
         pnBigdata.SetActive(false);
+    }
+    /*
+     * 세이브리스트 버튼 처리
+     */
+    public void PopupOpenSavelist()
+    {
+
+        pnSavelist.SetActive(true);
+    }
+    public void PopupCloseSavelist()
+    {
+        pnSavelist.SetActive(false);
     }
 
     // 초기화 처리

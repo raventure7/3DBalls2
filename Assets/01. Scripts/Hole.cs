@@ -1,15 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Hole : MonoBehaviour {
     public static Hole Instance = null;
+
+    public Slider sdSpeedSetting;
 
     public bool start;
     public bool hook;
     public int count;
     Collider tempOther;
+
     float speed = 0.15f;
+    float nextDelayTime = 1.0f;
+    float _nextDelayTime;
+
     private void Awake()
     {
         if(Instance == null)
@@ -19,6 +27,7 @@ public class Hole : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        _nextDelayTime = nextDelayTime;
         start = false;
         hook = false;
         count = 0;
@@ -62,7 +71,17 @@ public class Hole : MonoBehaviour {
     // 로또 번호 뽑기 추첨 딜레이
     IEnumerator NextDelay()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(_nextDelayTime);
         hook = false;
+    }
+    public void SpeedSetting()
+    {
+
+        //float _speed = speed / 50.0f;
+        //float _nextDelayTime = nextDelayTime / 40.0f;
+        //speed = _speed * sdSpeedSetting.value * 100;
+        _nextDelayTime = nextDelayTime * sdSpeedSetting.value;
+        
+        Debug.Log(sdSpeedSetting.value);
     }
 }
