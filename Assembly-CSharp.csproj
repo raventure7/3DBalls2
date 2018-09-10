@@ -79,6 +79,7 @@
     <Compile Include="Assets\01. Scripts\Read\LottoReaderScript.cs" />
     <Compile Include="Assets\01. Scripts\SaveListManager.cs" />
     <Compile Include="Assets\01. Scripts\SaveManager.cs" />
+    <Compile Include="Assets\01. Scripts\ScreenScript.cs" />
     <Compile Include="Assets\GoogleMobileAds\Api\AdFailedToLoadEventArgs.cs" />
     <Compile Include="Assets\GoogleMobileAds\Api\AdLoader.cs" />
     <Compile Include="Assets\GoogleMobileAds\Api\AdPosition.cs" />
