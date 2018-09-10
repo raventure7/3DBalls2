@@ -29,6 +29,7 @@ public class BigdataManager : MonoBehaviour {
     public Text rank1CountText;
     public Text rank1HistoryText;
 
+    public Text state;
     private void Awake()
     {
         if (Instance == null)
@@ -52,6 +53,7 @@ public class BigdataManager : MonoBehaviour {
             Debug.Log("DB 연동 완료");
             historyData = DBManager.data;
             DBManager.success = false;
+            state.text = "DB Connect";
         }
 
         int[] tmpNumArray;
