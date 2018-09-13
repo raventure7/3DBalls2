@@ -7,8 +7,9 @@ public class ScreenScript : MonoBehaviour {
     {
         //Screen.SetResolution(720, 1280, false);
         //Screen.SetResolution(450, 800, false);
-        //Screen.SetResolution(1440, 2560, false);
-        Screen.SetResolution(Screen.width, (Screen.width * 16) / 10, true);
+        //Screen.SetResolution(1280, 1280, false);
+        //Screen.SetResolution(Screen.width, (Screen.width * 16) / 10, true);
+        Screen.SetResolution(Screen.width, (Screen.width * 16) / 9, true);
     }
     // Use this for initialization
     void Start () {
